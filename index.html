@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Книга Приключений — Личный Дашборд</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Частицы/декор фона -->
+  <div class="parchment-texture" aria-hidden="true"></div>
+
+  <div class="book-container">
+    <!-- Корешок книги -->
+    <div class="book-spine" aria-hidden="true">
+      <div class="spine-rivets"></div>
+      <div class="spine-rivets bottom"></div>
+      <span class="spine-title">Liber Adventurae</span>
+    </div>
+
+    <!-- Левая страница -->
+    <main class="book-page page-left" aria-label="Левая страница">
+      <header class="page-header">
+        <div class="header-ornament">✦ ❖ ✦</div>
+        <h1 class="book-title">Книга Приключений</h1>
+        <p class="book-subtitle">Личный дневник героя</p>
+        <div class="header-rule"></div>
+      </header>
+
+      <!-- Блок времени и даты -->
+      <section class="panel clock-panel" aria-labelledby="clock-title">
+        <h2 id="clock-title" class="panel-title">Хроника Дня</h2>
+        <div class="clock-display">
+          <div class="clock-time" id="clock-time">--:--:--</div>
+          <div class="clock-date" id="clock-date">—</div>
+        </div>
+        <div class="day-phase" id="day-phase">—</div>
+      </section>
+
+      <!-- Погода -->
+      <section class="panel weather-panel" aria-labelledby="weather-title">
+        <h2 id="weather-title" class="panel-title">Погодные Знаки</h2>
+        <div class="weather-content">
+          <div class="weather-icon" id="weather-icon">☀</div>
+          <div class="weather-details">
+            <div class="weather-temp" id="weather-temp">—°</div>
+            <div class="weather-desc" id="weather-desc">—</div>
+            <div class="weather-meta">
+              <span>Влажность: <strong id="weather-humidity">—</strong></span>
+              <span>Ветер: <strong id="weather-wind">—</strong></span>
+            </div>
+          </div>
+        </div>
+        <div class="weather-forecast" id="weather-forecast"></div>
+      </section>
+
+      <!-- Цитата дня -->
+      <section class="panel quote-panel" aria-labelledby="quote-title">
+        <h2 id="quote-title" class="panel-title">Изречение Дня</h2>
+        <blockquote class="quote-block">
+          <p class="quote-text" id="quote-text">—</p>
+          <cite class="quote-author" id="quote-author">—</cite>
+        </blockquote>
+        <button class="btn-ornate" id="btn-new-quote" type="button">Новое изречение</button>
+      </section>
+
+      <footer class="page-footer">— стр. 1 —</footer>
+    </main>
+
+    <!-- Правая страница -->
+    <main class="book-page page-right" aria-label="Правая страница">
+      <nav class="page-nav">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Переключить тему">
+          <span class="theme-icon" id="theme-icon">☾</span>
+          <span class="theme-label" id="theme-label">Тёмная тема</span>
+        </button>
+      </nav>
+
+      <!-- KPI -->
+      <section class="panel stats-panel" aria-labelledby="stats-title">
+        <h2 id="stats-title" class="panel-title">Подвиги и Свершения</h2>
+        <div class="stats-grid" id="stats-grid"></div>
+      </section>
+
+      <!-- Графики -->
+      <section class="panel chart-panel" aria-labelledby="chart-title">
+        <h2 id="chart-title" class="panel-title">Летопись Прогресса</h2>
+        <p class="panel-desc">Опыт, накопленный за последние 12 недель</p>
+        <div class="chart-wrapper">
+          <svg class="line-chart" id="line-chart" viewBox="0 0 600 220" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Линейный график накопленного опыта"></svg>
+          <div class="chart-legend" id="chart-legend"></div>
+        </div>
+      </section>
+
+      <!-- Столбчатая диаграмма -->
+      <section class="panel chart-panel" aria-labelledby="barchart-title">
+        <h2 id="barchart-title" class="panel-title">Задания по Ремёслам</h2>
+        <p class="panel-desc">Распределение выполненных заданий по категориям</p>
+        <div class="chart-wrapper">
+          <svg class="bar-chart" id="bar-chart" viewBox="0 0 600 240" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Столбчатая диаграмма заданий по категориям"></svg>
+        </div>
+      </section>
+
+      <!-- Таблица задач -->
+      <section class="panel table-panel" aria-labelledby="table-title">
+        <h2 id="table-title" class="panel-title">Реестр Квестов</h2>
+        <div class="table-scroll">
+          <table class="quest-table">
+            <thead>
+              <tr>
+                <th scope="col">Задание</th>
+                <th scope="col">Категория</th>
+                <th scope="col">Сложность</th>
+                <th scope="col">Статус</th>
+                <th scope="col">Награда</th>
+              </tr>
+            </thead>
+            <tbody id="quest-tbody"></tbody>
+          </table>
+        </div>
+        <div class="table-filters">
+          <label for="status-filter" class="filter-label">Фильтр по статусу:</label>
+          <select id="status-filter" class="ornate-select">
+            <option value="all">Все</option>
+            <option value="Выполнено">Выполнено</option>
+            <option value="В процессе">В процессе</option>
+            <option value="Запланировано">Запланировано</option>
+          </select>
+        </div>
+      </section>
+
+      <footer class="page-footer">— стр. 2 —</footer>
+    </main>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
